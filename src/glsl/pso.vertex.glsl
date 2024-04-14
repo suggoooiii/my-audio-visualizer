@@ -1,18 +1,11 @@
 
-#version 300 es
 #ifdef GL_ES
 precision highp float;
 #endif
 
-attribute vec3 position;
-
-
-uniform mat4 projectionMatrix;
-
-varying vec3 vNormal;
-varying vec3 vFragPos;
-
+varying vec3 vWorldPosition;
 void main() {
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-
+    vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+    vWorldPosition = worldPosition.xyz;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
 }
